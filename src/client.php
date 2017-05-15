@@ -17,11 +17,6 @@
 		<nav class="navbar navbar-default navbar-static-top">
 		  <div class="container">
 		    <h1>Book store service</h1>
-		    <?php if(isset($clientShoppingService)) : ?>
-		    	<h2> Service online </h2>
-		    <?php else : ?>
-		    	<h2> Service offline </h2>
-		    <?php endif; ?>
 		  </div>
 		</nav>
 		
@@ -41,7 +36,7 @@
 					<td><?=$book['isbn'];?></td>
 					<td><?=$book['title'];?></td>
 					<td><?=$book['quantity'];?></td>
-					<td><input type="number" name="isbn_<?=$book['isbn'];?>"/></td>
+					<td><input type="number" min="0" name="isbn_<?=$book['isbn'];?>"/></td>
 					
 				</tr>
 					<?php } 
@@ -58,7 +53,7 @@
 		    
 		    <input type="hidden" name="_method" value="POST">
 
-		    <button name="service" type="submit" value="acheter">Acheter</button>
+		    <!-- <button name="service" type="submit" value="acheter">Acheter</button> -->
 			<button name="service" type="submit" value="commander">Commander</button>
 		</form>
 

@@ -1,17 +1,15 @@
 <?php
 require __DIR__ . '/../vendor/autoload.php';
 
-switch($_REQUEST['service']) {
 
-    case 'acheter': 
-    	$client = new GuzzleHttp\Client(['base_uri' => 'http://project-shoppingservice.herokuapp.com/shopping/books']);
-    	break;
+/*$client = new GuzzleHttp\Client(
+	[
+	'base_uri' => 'http://project-shoppingservice.herokuapp.com/shopping/books',
+	'headers' => ['Content-Type' => 'application/json', 'Accept' => 'application/json']
+	]
+);*/
 
-    case 'commander': 
-    	$client = new GuzzleHttp\Client(['base_uri' => '']);
-        break;
-
-}
+$client = new GuzzleHttp\Client();
 
 if( !empty( $_POST ) ){
 
@@ -43,11 +41,13 @@ if( !empty( $_POST ) ){
 }
 $json = json_encode( $post_array );
 
-
-
-$response = $client->request('POST', 'http://project-shoppingservice.herokuapp.com/shopping/books', [
-    'json'    =>  $json,
+$response = $client->request('POST', 'http://project-shoppingservice.herokuapp.com/shopping/books/order', [
+ 	'headers' => ['Content-Type' => 'application/json', 'Accept' => 'application/json'],
+ 	'json' => $json
 ]);
+
+var_dump($response);
+/*header('Location: ./client.php'); */ 
 
 
 
