@@ -40,13 +40,15 @@ if( !empty( $_POST ) ){
 
 }
 $json = json_encode( $post_array );
-
+try{
 $response = $client->request('POST', 'http://project-shoppingservice.herokuapp.com/shopping/books/order', [
- 	'headers' => ['Content-Type' => 'application/json', 'Accept' => 'application/json'],
+ 	'headers' => ['Content-Type' => 'application/json', 'Accept' => 'text/plain'],
  	'json' => $json
 ]);
+} catch (Exception $e) {
+	var_dump($e);
+}
 
-var_dump($response);
 /*header('Location: ./client.php'); */ 
 
 
