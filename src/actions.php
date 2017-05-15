@@ -4,7 +4,7 @@ require __DIR__ . '/../vendor/autoload.php';
 switch($_REQUEST['service']) {
 
     case 'acheter': 
-    	$client = new GuzzleHttp\Client();
+    	$client = new GuzzleHttp\Client(['base_uri' => 'http://project-shoppingservice.herokuapp.com/shopping/books']);
     	break;
 
     case 'commander': 
@@ -46,7 +46,6 @@ $json = json_encode( $post_array );
 
 
 $response = $client->request('POST', 'http://project-shoppingservice.herokuapp.com/shopping/books', [
-	'headers' => ['Content-Type' => 'application/json'],
     'json'    =>  $json,
 ]);
 
