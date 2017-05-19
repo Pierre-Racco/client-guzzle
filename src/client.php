@@ -27,6 +27,13 @@
 		<form action="./actions.php" method="POST" class="input-group">
 
 			<table>
+				<tr>
+					<th>Auteur</th>
+					<th>ISBN</th>
+					<th>Titre</th>
+					<th>Quantité</th>
+					<th>Choix</th>
+				</tr>
 				<?php 
 				if(isset($books)) :
 
@@ -36,27 +43,31 @@
 					<td><?=$book['isbn'];?></td>
 					<td><?=$book['title'];?></td>
 					<td><?=$book['quantity'];?></td>
-					<td><input type="number" min="0" name="isbn_<?=$book['isbn'];?>"/></td>
+					<td><input type="number" min="0" name="isbn_<?=$book['isbn'];?>" value="0"/></td>
 					
 				</tr>
 					<?php } 
 				endif;
 				?>
 			</table>
-		    
-		    <!-- <select name="book_select" required>
-				<?php foreach($books as $book){ ?>
-					<option value="<?=$book['isbn'];?>"><?=$book['title'];?></option>
-				<?php } ?>
-			</select> -->
+		 
 		    
 		    
 		    <input type="hidden" name="_method" value="POST">
 
-		    <!-- <button name="service" type="submit" value="acheter">Acheter</button> -->
 			<button name="service" type="submit" value="commander">Commander</button>
 		</form>
 
+		<?php
+		if(isset($_GET['code'])){
+		?>
+		<p>Code retour : <?php echo $_GET['code'] ;?></p>
+		<?php } ?>
+		<?php
+		if(isset($_GET['reason'])){
+		?>
+		<p>Message : <?php echo $_GET['reason'] ;?></p>
+		<?php } ?>
 
 	</body>
 </html>

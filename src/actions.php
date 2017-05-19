@@ -1,13 +1,13 @@
 <?php
 require __DIR__ . '/../vendor/autoload.php';
-$client = new GuzzleHttp\Client(
+/*$client = new GuzzleHttp\Client(
 	[
 	'base_uri' => 'http://project-shoppingservice.herokuapp.com/shopping/books',
 	'headers' => ['Content-Type' => 'application/json', 'Accept' => 'application/json']
 	]
-);
+);*/
 
-// $client = new GuzzleHttp\Client();
+$client = new GuzzleHttp\Client();
 if( !empty( $_POST ) ){
 
 	$post_array = array();
@@ -42,12 +42,15 @@ $response = $client->request('POST', 'http://project-shoppingservice.herokuapp.c
  	//'headers' => ['Content-Type' => 'application/json', 'Accept' => 'text/plain'],
  	'json' => $post_array
 ]);
-var_dump($response);
+$code = $response->getStatusCode();
+$reason = $response->getReasonPhrase();
+header('Location: ./client.php?reason='.$reason.'&code='.$code); 
+ 
 } catch (Exception $e) {
 	var_dump($e);
 }
 
-header('Location: ./client.php'); 
+
 
 
 
